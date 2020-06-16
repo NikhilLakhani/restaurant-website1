@@ -2,19 +2,19 @@ import React, {Component} from 'react';
 import {Card, CardText, CardImg, CardTitle, CardBody} from 'reactstrap';
 
 class DishDetail extends Component{
-    constructor(props)
-    {
-        super(props);
-
-        this.state={
-            
-        };
+    
+    componentDidMount(){
+        console.log("dish mount");
     }
 
-
+    componentDidUpdate(){
+        console.log("dish update");
+    }
 
     render()
     {
+        console.log("dish update");
+
         const ds=this.props.d;
         if(ds!=null)
         {
@@ -22,13 +22,8 @@ class DishDetail extends Component{
                 return(
                     <li key={cmt.id}>
                         <p>{cmt.comment}</p>
-                        <p>--{cmt.author},
-                        &nbsp;
-                        {new Intl.DateTimeFormat('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: '2-digit'
-                        }).format(new Date(cmt.date))}
+                        <p>--{cmt.author}, {new Intl.DateTimeFormat('en-US', 
+                            {year: 'numeric', month:'short', day:'2-digit'}).format(new Date(Date.parse(cmt.date)))}
                         </p>
                     </li>
                 );
