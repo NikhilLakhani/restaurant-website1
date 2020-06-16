@@ -3,7 +3,7 @@ import { Card, CardText, CardImg, CardTitle, CardBody } from 'reactstrap';
 
 function RenderDish({ds}) {
     return (
-        <div className='col-12 col-md-5 mt-5'>
+        <div className='col-12 col-md-5 mb-5'>
             <Card>
                 <CardImg src={ds.image} />
                 <CardBody>
@@ -28,7 +28,7 @@ function RenderComments({comments}) {
         );
     });
     return (
-        <div className='col-12 col-md-5 mt-5'>
+        <div className='col-12 col-md-5 mb-5'>
             <h2>Comments</h2>
             <ul className='list-unstyled ml-0'>{cmts}</ul>
         </div>
