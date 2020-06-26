@@ -5,14 +5,21 @@ import { Link } from 'react-router-dom';
 function RenderLeader({ leader }) {
 
     return (
-        <Media className='m-2 row'>
-            <Media className='col-12 col-md-2' left object src={leader.image} alt={leader.name} width='10%' />
-            <Media body className='col-12 col-md-10'>
-                <h3>{leader.name}</h3>
-                <p>{leader.designation}</p>
-                <p>{leader.description}</p>
+        <div className='m-5'>
+            <Media>
+                <div className='col-12 col-md-2'>
+                    <Media object src={leader.image} alt={leader.name} width='100%' />
+                    <Media className='d-md-none' style={{textAlign:"center"}} heading>{leader.name}</Media>
+                </div>
+                <div className='d-none d-md-block col col-md'>
+                    <Media body>
+                        <h3>{leader.name}</h3>
+                        <p>{leader.designation}</p>
+                        <p>{leader.description}</p>
+                    </Media>
+                </div>
             </Media>
-        </Media>
+        </div>
     );
 }
 
@@ -20,7 +27,7 @@ function About(props) {
 
     const cleaders = props.leaders.map((leader) => {
         return (
-            <div>
+            <div className='col-12' key={leader.id}>
                 <RenderLeader leader={leader} />
             </div>
         )
@@ -79,13 +86,13 @@ function About(props) {
                 </div>
             </div>
 
-            <div className='row row-content'>
-                <div className='col-12'>
+            <div className='row'>
+                <div className='col-12 mt-5'>
                     <h3>Corporate Leadership</h3>
                 </div>
-                <div className='col-12'>
-                    {cleaders}
-                </div>
+            </div>
+            <div className='row'>
+                {cleaders}
             </div>
         </div>
     );
