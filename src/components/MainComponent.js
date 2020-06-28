@@ -59,6 +59,7 @@ class Main extends Component {
         return (
             <div>
                 <Header/>
+                <div className='mt-4 mb-4'>
                 <Switch>
                     <Route path='/home' component={HomePage}/>
                     <Route exact path='/menu/:dishId' component={DishWithId}/>
@@ -67,6 +68,7 @@ class Main extends Component {
                     <Route exact path='/about' component={()=> <About leaders={this.state.leaders}/>} />
                     <Redirect to='/home' />
                 </Switch>
+                </div>
                 {/* <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
                 <DishDetail d={this.state.dishes.filter((dish)=> dish.id===this.state.selectedDish)[0]}/> */}
                 <Footer/>
