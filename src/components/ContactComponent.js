@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const required = (val) => val && val.length;
 
 const maxLength = (len) => (val) => !(val) || (val.length<=len);
-const minLength = (len) => (val) => (val) && (val.length>=len);
+const minLength = (len) => (val) => ((val) && (val.length>=len)) || !(val);
 
 const isNumber=(val) => !isNaN(Number(val));
 
@@ -104,7 +104,7 @@ class Contact extends Component {
                                         }}
                                     />
                                     <Errors
-                                        className='text-Danger'
+                                        className='text-danger'
                                         model='.lastname'
                                         show='touched'
                                         messages={{
@@ -147,7 +147,7 @@ class Contact extends Component {
                                         }}
                                     />
                                     <Errors
-                                        className='text-Danger'
+                                        className='text-danger'
                                         model='.email'
                                         show='touched'
                                         messages={{
