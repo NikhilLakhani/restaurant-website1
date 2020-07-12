@@ -49,11 +49,11 @@ function RenderComments(props) {
     );
 }
 
-function CommentForm({ isModalOpen, onclick }) {
+function CommentForm({ isModalOpen, onclick, addComment, dishId }) {
 
     const handelSubmit=(values)=>{
         onclick();
-        alert("Current state is: "+JSON.stringify(values));
+        addComment(dishId, values.rating, values.username, values.comment);
     }
 
     return (
@@ -146,7 +146,10 @@ class DishDetail extends Component {
                     <div className='row'>
                         <RenderDish ds={this.props.d} />
                         <RenderComments comments={this.props.comments} onclick={() => this.toggleModal()} />
-                        <CommentForm isModalOpen={this.state.isModalOpen} onclick={() => this.toggleModal()} />
+                        <CommentForm isModalOpen={this.state.isModalOpen} onclick={() => this.toggleModal()} 
+                        addComment={this.props.addComment}
+                        dishId={this.props.d.id}
+                        />
                     </div>
                 </div>
             )
