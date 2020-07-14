@@ -5,6 +5,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LocalForm, Errors, Control } from 'react-redux-form';
+import {Loading} from './LoadingComponent';
 
 const required=(val)=>val && val.length;
 
@@ -130,7 +131,25 @@ class DishDetail extends Component {
     }
 
     render() {
-        if (this.props.d != null) {
+        if(this.isLoading){
+            return(
+                <div className='container'>
+                    <div className='row'>
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if(this.props.errMess){
+            return(
+                <div className='container'>
+                    <div className='row'>
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else if (this.props.d != null) {
             return (
                 <div className='container'>
                     <div className="row">

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, CardImg, CardTitle, CardImgOverlay, Breadcrumb, BreadcrumbItem, Form } from 'reactstrap';
+import { Card, CardImg, CardTitle, CardImgOverlay, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import {Loading} from './LoadingComponent';
 
 function RenderMenuItem({dish}) {
     return (
@@ -17,7 +18,7 @@ function RenderMenuItem({dish}) {
 
 const Menu = (props) => {
     console.log('Menu Component render() is invoked');
-    const menu = props.dishes.map((dish) => {
+    const menu = props.dishes.dishes.map((dish) => {
         // console.log(dish);
         return (
             <div key={dish.id} className="col-12 col-md-5 mb-5">
@@ -25,6 +26,25 @@ const Menu = (props) => {
             </div>
         );
     });
+    if(props.dishes.isLoading){
+        return(
+            <div className='container'>
+                <div className='row'>
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if(props.dishes.errMess){
+        return(
+            <div className='container'>
+                <div className='row'>
+                    <h4>{this.props.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else{
     return (
         <div>
             <div className="container">
@@ -44,6 +64,7 @@ const Menu = (props) => {
             </div>
         </div>
     );
+}
 }
 
 export default Menu;
