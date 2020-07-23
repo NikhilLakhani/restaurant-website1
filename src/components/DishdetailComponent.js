@@ -6,6 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 import { LocalForm, Errors, Control } from 'react-redux-form';
 import {Loading} from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl';
 
 const required=(val)=>val && val.length;
 
@@ -16,7 +17,7 @@ function RenderDish({ ds }) {
     return (
         <div className='col-12 col-md-5 mb-5'>
             <Card>
-                <CardImg src={ds.image} />
+                <CardImg src={baseUrl + ds.image} />
                 <CardBody>
                     <CardTitle>{ds.name}</CardTitle>
                     <CardText>{ds.description}</CardText>
