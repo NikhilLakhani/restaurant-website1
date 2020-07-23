@@ -51,11 +51,11 @@ function RenderComments(props) {
     );
 }
 
-function CommentForm({ isModalOpen, onclick, addComment, dishId }) {
+function CommentForm({ isModalOpen, onclick, postComment, dishId }) {
 
     const handelSubmit=(values)=>{
         onclick();
-        addComment(dishId, values.rating, values.username, values.comment);
+        postComment(dishId, values.rating, values.username, values.comment);
     }
 
     return (
@@ -167,7 +167,7 @@ class DishDetail extends Component {
                         <RenderDish ds={this.props.d} />
                         <RenderComments comments={this.props.comments} onclick={() => this.toggleModal()} />
                         <CommentForm isModalOpen={this.state.isModalOpen} onclick={() => this.toggleModal()} 
-                        addComment={this.props.addComment}
+                        postComment={this.props.postComment}
                         dishId={this.props.d.id}
                         />
                     </div>
