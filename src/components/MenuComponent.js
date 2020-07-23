@@ -18,7 +18,6 @@ function RenderMenuItem({dish}) {
 }
 
 const Menu = (props) => {
-    console.log('Menu Component render() is invoked');
     const menu = props.dishes.dishes.map((dish) => {
         // console.log(dish);
         return (
@@ -40,7 +39,7 @@ const Menu = (props) => {
         return(
             <div className='container'>
                 <div className='row'>
-                    <h4>{this.props.errMess}</h4>
+                    <h4>{props.dishes.errMess}</h4>
                 </div>
             </div>
         );
