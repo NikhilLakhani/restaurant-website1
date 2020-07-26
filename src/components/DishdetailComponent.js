@@ -143,7 +143,7 @@ class DishDetail extends Component {
     }
 
     render() {
-        if(this.isLoading){
+        if(this.props.isLoading){
             return(
                 <div className='container'>
                     <div className='row'>
