@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { LocalForm, Errors, Control } from 'react-redux-form';
 import {Loading} from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
+import {FadeTransform, Fade, Stagger} from 'react-animation-components';
 
 const required=(val)=>val && val.length;
 
@@ -16,6 +17,9 @@ const maxLength=(len)=>(val)=>!(val) || (val.length<=len);
 function RenderDish({ ds }) {
     return (
         <div className='col-12 col-md-5 mb-5'>
+            <FadeTransform in transformProps={{
+                exitTransport: 'scale(0.5) translateY(-50%)'
+            }}>
             <Card>
                 <CardImg src={baseUrl + ds.image} />
                 <CardBody>
@@ -23,6 +27,7 @@ function RenderDish({ ds }) {
                     <CardText>{ds.description}</CardText>
                 </CardBody>
             </Card>
+            </FadeTransform>
         </div>
 
     );
@@ -31,19 +36,25 @@ function RenderDish({ ds }) {
 function RenderComments(props) {
     const cmts = props.comments.map((cmt) => {
         return (
+            <Fade in>
             <li key={cmt.id}>
                 <p>{cmt.comment}</p>
                 <p>--{cmt.author}, {new Intl.DateTimeFormat('en-US',
                     { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(cmt.date)))}
                 </p>
             </li>
+            </Fade>
         );
     });
 
     return (
         <div className='col-12 col-md-5 mb-5'>
             <h2>Comments</h2>
-            <ul className='list-unstyled ml-0'>{cmts}</ul>
+            <ul className='list-unstyled ml-0'>
+                <Stagger in>
+                    {cmts}
+                </Stagger>
+            </ul>
             <Button outline onClick={() => props.onclick()}>
                 <span className='fa fa-pencil fa-lg'></span>{' '}Submit Comment
             </Button>
