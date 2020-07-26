@@ -10,6 +10,7 @@ import DishDetail from "./DishdetailComponent";
 import {connect} from 'react-redux';
 import {postComment, fetchDishes, fetchComments, fetchPromos} from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
+import {TransitionGroup, CSSTransition} from 'react-transition-group'
 
 const mapStateToProps=(state)=>{
     return{
@@ -81,7 +82,10 @@ class Main extends Component {
         return (
             <div>
                 <Header/>
+                
                 <div className='mt-4 mb-4'>
+                <TransitionGroup>
+                <CSSTransition key={this.props.location.key} classNames='page' timeout={300}>
                 <Switch>
                     <Route path='/home' component={HomePage}/>
                     <Route exact path='/menu/:dishId' component={DishWithId}/>
@@ -90,9 +94,13 @@ class Main extends Component {
                     <Route exact path='/about' component={()=> <About leaders={this.props.leaders}/>} />
                     <Redirect to='/home' />
                 </Switch>
+                
+                </CSSTransition>
+                </TransitionGroup>
                 </div>
                 {/* <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
                 <DishDetail d={this.state.dishes.filter((dish)=> dish.id===this.state.selectedDish)[0]}/> */}
+                
                 <Footer/>
             </div>
         );
